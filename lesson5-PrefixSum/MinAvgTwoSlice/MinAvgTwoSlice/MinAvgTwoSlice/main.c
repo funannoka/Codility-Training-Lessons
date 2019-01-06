@@ -52,7 +52,6 @@
  */
 
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
@@ -139,6 +138,3 @@ int solution(int A[], int N){
 
 
 
-
-
-//netflix passwd: arinze850206@yosemite.edu > family638
