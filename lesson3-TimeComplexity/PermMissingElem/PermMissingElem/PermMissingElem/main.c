@@ -47,7 +47,7 @@ int main() {
             scanf("%d",&A[i]);
         }
         
-        val = solutionMostEfficient(A, n);
+        val = solution (A, n);
         printf("\nMissing Num: %d ",val);
         
     }
