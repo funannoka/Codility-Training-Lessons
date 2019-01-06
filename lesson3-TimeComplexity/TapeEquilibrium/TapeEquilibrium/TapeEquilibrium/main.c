@@ -54,6 +54,7 @@
 
 
 int solution(int [], int);
+
 int main() {
     int i,n,val;
     int A[100000];
@@ -75,7 +76,7 @@ int main() {
 //diff = |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
 #include <limits.h>
     //O(N)
-int solutionMostEfficient(int A[], int N){
+int solution(int A[], int N){
         int *p = malloc(sizeof(int) * N);
         int  topHalf;
         int bottomHalf;
