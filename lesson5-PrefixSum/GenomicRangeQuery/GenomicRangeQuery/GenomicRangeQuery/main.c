@@ -59,7 +59,6 @@ struct Results {
     int * A;
     int M; // Length of the array
 };
-//struct Results solution(char *S, int P[], int Q[], int M);
 
 struct Results solution(char *S, int P[], int Q[], int M);
 
@@ -91,50 +90,43 @@ int main() {
     return 0;
 }
 
-
-struct Results solution_(char *S, int P[], int Q[], int M){
+// O(N+M)
+struct Results solution(char *S, int P[], int Q[], int M){
     struct Results result;
+    int i,j;
+    char nucleotides[4] = "ACGT";
+    int *part[4];
     
-    int i,n,val=INT_MAX;
-    //int *reg = calloc(M+1, sizeof(int));
-    int *buff = calloc((strlen(S))+1, sizeof(int));
+    result.A = malloc(M*sizeof(int));
     
-    result.A = calloc(M+1, sizeof(int));
-    
-    for (i=0;i<strlen(S);i++){
-        switch (S[i]) {
-            case 'A':
-                buff[i] = 1;
-                break;
-            case 'C':
-                buff[i] = 2;
-                break;
-            case 'G':
-                buff[i] = 3;
-                break;
-            case 'T':
-                buff[i] = 4;
-                break;
-            default:
-                printf("\nInvalid String!");
-                break;
+    for(i=0;i<4;i++){
+        part[i]=malloc(strlen(S)*sizeof(int));
+    }
+    //Find occurence position of first nucleotide in S
+    for(j=0;j<4;j++){
+        part[j][0] = (S[0] == nucleotides[j]) - 1;
+    }
+    //Find occurence position of ith nucleotide in S
+    for (i=1; i<strlen(S); i++) {
+        for (j=0; j<4; j++) {
+            part[j][i] = (S[i] == nucleotides[j])?i:part[j][i-1];
         }
     }
     for (i=0; i<M; i++) {
-        for (n=P[i]; n<=Q[i]; n++) {
-            if (val > buff[n]) {
-                val = buff[n];
+        result.A[i]=-1;
+        for (j=0; j<4; j++) {
+            //check for at least one jth nucleotide within the range P[i] to Q[i]?
+            if((part[j][Q[i]] >= P[i])&&(part[j][P[i]] <= Q[i])) {
+                result.A[i] = j+1;
+                break;
             }
         }
-        result.A[i] = val;
-        val = INT_MAX;
     }
     result.M = M;
     return result;
 }
 
-
-
+//0(N*M) LOWER PERFORMANCE
 struct Results solution_N_M(char *S, int P[], int Q[], int M){
     struct Results result;
     int i,n,val=INT_MAX;
@@ -142,9 +134,7 @@ struct Results solution_N_M(char *S, int P[], int Q[], int M){
 
     result.A = calloc(M+1, sizeof(int));
     for (i=0; i<M; i++) {
-        for (n=P[i]; n<=Q[i]; n++) {
-           // buff[n] = (S[n] == 'A')?1:(S[n] == 'C')?2:(S[n] == 'G')?3:(S[n] == 'T')?4:buff[n];
-            
+        for (n=P[i]; n<=Q[i]; n++) {            
             switch (S[n]) {
                 case 'A':
                     buff[n] = 1;
@@ -173,41 +163,3 @@ struct Results solution_N_M(char *S, int P[], int Q[], int M){
     return result;
 }
 
-//Highest Performance Solution O(N+M)
-struct Results solution(char *S, int P[], int Q[], int M){
-    struct Results result;
-    int i,j;
-    char nucleotides[4] = "ACGT";
-    int *part[4];
-    
-    result.A = malloc(M*sizeof(int));
-    
-    for(i=0;i<4;i++){
-        part[i]=malloc(strlen(S)*sizeof(int));
-    }
-    //Find occurence position of first nucleotide in S
-    for(j=0;j<4;j++){
-        //if -1: Not yet occurred in S
-        part[j][0] = (S[0] == nucleotides[j]) - 1;
-    }
-    //Find occurence position of ith nucleotide in S
-    for (i=1; i<strlen(S); i++) {
-        for (j=0; j<4; j++) {
-            //If jth nucleotide is S[i], the occurence of this nucleotide in S is ith.
-            //Otherwise, the occurence of the jth nucleotide in S is the same with the last occurence.
-            part[j][i] = (S[i] == nucleotides[j])?i:part[j][i-1];
-        }
-    }
-    for (i=0; i<M; i++) {
-        result.A[i]=-1;
-        for (j=0; j<4; j++) {
-            //within the range from P[i] to Q[i], is there at least one jth nucleotide?
-            if((part[j][Q[i]] >= P[i])&&(part[j][P[i]] <= Q[i])) {
-                result.A[i] = j+1;
-                break;
-            }
-        }
-    }
-    result.M = M;
-    return result;
-}
