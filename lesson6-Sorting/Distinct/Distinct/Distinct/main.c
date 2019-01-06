@@ -68,25 +68,7 @@ int solution(int A[], int N){
 }
 
 
-int solution_50percent(int A[], int N){
-    int i,low,high;
-    int count;
-    int *plot = calloc(N+1, sizeof(int));
-
-    
-    for (i=0,low =1e6,high=-1e6; i<N; i++) {
-        plot[A[i]]++;
-        low = (A[i]<low)?A[i]:low;
-        high = (A[i]>high)?A[i]:high;
-    }
-    for (i=low,count=0; i<= high; i++) {
-        if (plot[i] > 0) {
-            count++;
-        }
-    }
-    return count;
-}
-
+//Low performance solution
 int solution_60percent(int A[], int N){
     int i;
     int count;
