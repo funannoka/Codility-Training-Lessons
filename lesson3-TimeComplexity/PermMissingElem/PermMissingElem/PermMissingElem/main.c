@@ -35,7 +35,6 @@
 #include <math.h>
 
 int solution(int [], int);
-int solutionMostEfficient(int [], int);
 
 int main() {
     int i,n,val;
@@ -55,26 +54,10 @@ int main() {
     return 0;
 }
 
-//X = (N+1)!/A[]!
-int solution(int A[], int N){
-    int n;
-    int X;
-   // long  x;
-    long  perm1LessElem =  1;
-    long  nPlusOnePerm = 1;
-
-    for (n = 2; n <= N+1; n++) {
-        nPlusOnePerm *= (long)n;
-        perm1LessElem *= (long)A[n-2];
-    }
-    X = nPlusOnePerm/(long double)perm1LessElem;
-    return X;
-}
-
 //Adder permutation (N+1)!: 1+2+3+...+N+N+1
 //(N+1)! = ((N+1)*(N+2))/2
 //X = (N+1)! - A[]!
-int solutionMostEfficient(int A[], int N){
+int solution (int A[], int N){
     int n;
     int X;
     long  perm1LessElem =  0;
