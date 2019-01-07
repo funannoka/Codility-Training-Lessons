@@ -54,7 +54,6 @@
 
 
 int solution(int [], int);
-int solutionMostEfficient(int [], int);
 
 int main() {
     int i,n,val;
@@ -67,7 +66,7 @@ int main() {
             scanf("%d",&A[i]);
         }
         
-        val = solutionMostEfficient(A, n);
+        val = solution(A, n);
         printf("\nMin Difference: %d ",val);
         
     }
@@ -75,74 +74,9 @@ int main() {
 }
 
 //diff = |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
-//O(N*N)
-int solutionMediumEfficient69percent(int A[], int N){
-#define max 100000001
-    int i,n,p;
-    long  topHalf =  0;
-    long bottomHalf = 0;
-    long diff = 0;
-    long  min=max;
-    
-    for (p = 1; p <= N-1; p++) {
-        topHalf = 0;
-        bottomHalf = 0;
-        for (n=0; n <= p-1; n++)
-            topHalf += (long)A[n];
-        for (i=p; i <= N-1; i++)
-            bottomHalf  += (long)A[i];
-        diff = abs(topHalf - bottomHalf);
-      //  if(p == 1)
-        //    min = abs(topHalf - bottomHalf);
-        //else
-        if(diff < min)
-            min = diff;
-    }
-    return min;
-}
-
-//diff = |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
-//O(N*N)
-int solution53percentperformance(int A[], int N){
-    //#define max 100000001
-    int i,n=0,p=1;
-    long  topHalf =  0;
-    long bottomHalf = 0;
-    long diff = 0;
-    long  min = 1;
-    i=p;
-    while(p <= N-1){
-        //for (p = 1; p <= N-1; p++) {
-        if(n <= p-1)
-            topHalf += (long)A[n];
-        if(i <= N-1)
-            bottomHalf  += (long)A[i];
-        if ((i>=N-1)&(n >= p-1))
-        {
-            diff = abs(topHalf - bottomHalf);
-            topHalf = 0;
-            bottomHalf = 0;
-            p++;
-            i=p;
-            n=0;
-        }
-        else
-        {
-            n++;
-            i++;
-        }
-        if(p-1 == 1)
-            min = diff;
-        else if(diff < min)
-            min = diff;
-    }
-    return min;
-}
-
-
 #include <limits.h>
     //O(N)
-int solutionMostEfficient(int A[], int N){
+int solution(int A[], int N){
         int *p = malloc(sizeof(int) * N);
         int  topHalf;
         int bottomHalf;

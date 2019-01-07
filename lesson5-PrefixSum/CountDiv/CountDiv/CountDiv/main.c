@@ -23,7 +23,6 @@
 */
 
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -52,16 +51,5 @@ int solution(int A, int B, int K){
     if (A%K == 0)
         count++;
     
-    return count;
-}
-
-
-int solution_low_performance(int A, int B, int K){
-    int i,count;
-    for (i=A,count=0; i<=B; i++) {
-        if (i%K == 0) {
-            count++;
-        }
-    }
     return count;
 }

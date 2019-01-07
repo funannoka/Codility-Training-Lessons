@@ -59,8 +59,8 @@ int solution(int X, int Y, int D){
 
     dist = (Y-X)/d;
     n = ceil(dist);
-    printf("\nceil: %f ",dist);
-    printf("\nceil: %d ",n);
+    //printf("\nceil: %f ",dist);
+    //printf("\nceil: %d ",n);
     return n;
 }
 

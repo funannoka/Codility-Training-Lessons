@@ -61,7 +61,33 @@ int main() {
     return 0;
 }
 
-//O(N**3) 75% score
+
+int cmpfunc (const void * a, const void * b) {
+    int f = *(const int*)a;
+    int s = *(const int*)b;
+    if (f < s) return -1;
+    if (f == s) return 0;
+    return 1;
+}
+//O(NLogN) highest performance 
+int solution(int A[], int N){
+    int i;
+    long s;
+    
+    if (N < 3) return 0;
+    qsort(A, N, sizeof(int), cmpfunc);
+    
+    for (i=0; i<=N-3; i++) {
+        s = A[i] + A[i+1] - A[i+2];
+        if ((s > 0)&&(A[i]>0)) {
+            return 1;
+        }
+    }
+    
+    return 0;
+}
+
+//O(N**3) Low Performance 
 int solution_(int A[], int N){
     int i,j,k;
     int s1,s2,s3;
@@ -82,30 +108,3 @@ int solution_(int A[], int N){
     return 0;
 }
 
-
-
-
-int cmpfunc (const void * a, const void * b) {
-    int f = *(const int*)a;
-    int s = *(const int*)b;
-    if (f < s) return -1;
-    if (f == s) return 0;
-    return 1;
-}
-//O(NLogN) highest performance 100% score
-int solution(int A[], int N){
-    int i;
-    long s;
-    
-    if (N < 3) return 0;
-    qsort(A, N, sizeof(int), cmpfunc);
-    
-    for (i=0; i<=N-3; i++) {
-        s = A[i] + A[i+1] - A[i+2];
-        if ((s > 0)&&(A[i]>0)) {
-            return 1;
-        }
-    }
-    
-    return 0;
-}

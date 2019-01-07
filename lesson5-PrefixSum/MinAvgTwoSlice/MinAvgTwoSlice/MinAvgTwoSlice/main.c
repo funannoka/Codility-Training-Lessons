@@ -52,7 +52,6 @@
  */
 
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
@@ -139,5 +138,12 @@ int solution(int A[], int N){
 
 
 
+<<<<<<< HEAD
 
 
+||||||| merged common ancestors
+
+
+//netflix passwd: arinze850206@yosemite.edu > family638
+=======
+>>>>>>> 29aba04da91b99d2976f950be4e1e4c15bf787cf

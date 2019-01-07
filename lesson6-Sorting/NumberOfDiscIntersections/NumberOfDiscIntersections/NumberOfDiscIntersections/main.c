@@ -70,7 +70,7 @@ int cmpfunc (const void * a, const void * b) {
     return 1;
 }
 
-/*Time Complexity: O(nlog(n)) (due to sorting)
+/*Time Complexity: O(nlog(n)) 
 * Space Complexity: O(n)*/
 int solution(int A[], int N)
 {
