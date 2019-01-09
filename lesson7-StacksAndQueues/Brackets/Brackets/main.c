@@ -32,32 +32,19 @@
 
 int solution(char *S);
 
-int main() {
-    int n,r;
+int main()
+{
     char s[100];
-
     
-    while (1) {
-        printf("\n\nEnter length: ");
-        scanf("%d",&n);
-       // s = malloc(sizeof(char)*n);
+    while (1)
+    {
         printf("\n\nEnter S: ");
         scanf("%s",s);
-        s[n] = '\0';
-        if (s[n-1] == '\n')
-            s[n-1] = '\0';
-        if (s[n-1] == '\r')
-            s[n-1] = '\0';
-
-        r = solution(s);
-        if (r)
-        {
+        if (solution(s))
             printf("\nProperly Nested String");
-        }
         else
             printf("\nNOT Properly Nested String");
     }
-    
     return 0;
 }
 
