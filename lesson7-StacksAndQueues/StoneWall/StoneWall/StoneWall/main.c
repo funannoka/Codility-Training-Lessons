@@ -53,47 +53,6 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-int solution_(int H[], int N){
-    int i,j;
-    int block=0;
-    int cnt=0;
-    int *stack= calloc(N, sizeof(int));
-    
-    stack[cnt++] = H[0];
-    block++;
-    for (i=0; i<N; i++)
-    {
-        if (H[i] < stack[cnt-1])
-        {
-            // j=0;
-            // while(j < cnt)
-            for(j=0; j<cnt; j++)
-            {
-                if (H[i] <= stack[j])
-                {
-                    cnt = j;
-                    if (H[i] < stack[j])
-                    {
-                        block++;
-                        stack[cnt++] = H[i];
-                    }
-                    //cnt = j+1;
-                    break;
-                }
-                // j++;
-            }
-        }
-        else
-        {
-            if(H[i] > stack[cnt-1])
-            {
-                stack[cnt++] = H[i];
-                block++;
-            }
-        }
-    }
-    return block;
-}
 
 int solution(int H[], int N){
     int i;
